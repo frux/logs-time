@@ -1,0 +1,17 @@
+{
+  "name": "logs-time",
+  "version": "0.0.1",
+  "description": "Prepend timestamp to all your console outputs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logs",
+    "time",
+    "timestamp",
+    "console"
+  ],
+  "author": "frux <qdinov@yandex.ru>",
+  "license": "WTFPL"
+}
