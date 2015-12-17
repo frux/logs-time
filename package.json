@@ -1,6 +1,6 @@
 {
   "name": "logs-time",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Prepend timestamp to all your console outputs",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "license": "WTFPL",
   "dependencies": {
     "dateformat": "^1.0.12",
-    "stream-trans4mer": "^0.0.2"
+    "stream-trans4mer": "^0.1.0"
   },
   "directories": {
     "test": "test"

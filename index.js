@@ -12,9 +12,9 @@ module.exports = function(pattern){
 
 	process.stdout = new StreamTransformer(oldStdout, function(data){
 		return dateFormat(pattern) + data;
-	});
+	}, true);
 
 	process.stderr = new StreamTransformer(oldStderr, function(data){
 		return dateFormat(pattern) + data;
-	});
+	}, true);
 };
