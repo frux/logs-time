@@ -16,6 +16,6 @@
   "license": "WTFPL",
   "dependencies": {
     "dateformat": "^1.0.12",
-    "stream-transformer": "git://github.com/frux/stream-transformer.git"
+    "stream-trans4mer": "^0.0.2"
   }
 }

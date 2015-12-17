@@ -1,4 +1,4 @@
-var StreamTransformer = require('stream-transformer');
+var StreamTransformer = require('stream-trans4mer');
 var dateFormat = require('dateformat');
 
 module.exports = function(pattern){
