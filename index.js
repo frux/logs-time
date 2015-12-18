@@ -1,11 +1,19 @@
 var StreamTransformer = require('stream-trans4mer');
 var dateFormat = require('dateformat');
 
+function prependDate(data, pattern, prepend){
+	if(prepend){
+		data = dateFormat(pattern) + data;
+	}
+
+	return data;
+}
+
 module.exports = function(pattern){
 	var oldStdout = process.stdout,
 		oldStderr = process.stderr,
-		firstStdout = true,
-		firstStderr = true;
+		timeStdout = true,
+		timeStderr = true;
 
 	pattern = pattern || 'yyyy-mm-ddTHH:MM:ssZ ';
 
@@ -13,18 +21,18 @@ module.exports = function(pattern){
 	delete process.stderr;
 
 	process.stdout = new StreamTransformer(oldStdout, function(data){
-		if(firstStdout){
-			data = dateFormat(pattern) + data;
-			firstStdout = false;
-		}
-		return data.replace('\n', '\n' + dateFormat(pattern));
+		var dataWithDate = prependDate(data, pattern, timeStdout);
+
+		timeStdout = /\n$/.test(data);
+
+		return dataWithDate;
 	});
 
 	process.stderr = new StreamTransformer(oldStderr, function(data){
-		if(firstStderr){
-			data = dateFormat(pattern) + data;
-			firstStderr = false;
-		}
-		return data.replace('\n', '\n' + dateFormat(pattern));
+		var dataWithDate = prependDate(data, pattern, timeStderr);
+
+		timeStderr = /\n$/.test(data);
+
+		return dataWithDate;
 	});
 };
