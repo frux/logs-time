@@ -3,7 +3,9 @@ var dateFormat = require('dateformat');
 
 module.exports = function(pattern){
 	var oldStdout = process.stdout,
-		oldStderr = process.stderr;
+		oldStderr = process.stderr,
+		firstStdout = true,
+		firstStderr = true;
 
 	pattern = pattern || 'yyyy-mm-ddTHH:MM:ssZ ';
 
@@ -11,10 +13,18 @@ module.exports = function(pattern){
 	delete process.stderr;
 
 	process.stdout = new StreamTransformer(oldStdout, function(data){
-		return dateFormat(pattern) + data;
-	}, true);
+		if(firstStdout){
+			data = dateFormat(pattern) + data;
+			firstStdout = false;
+		}
+		return data.replace('\n', '\n' + dateFormat(pattern));
+	});
 
 	process.stderr = new StreamTransformer(oldStderr, function(data){
-		return dateFormat(pattern) + data;
-	}, true);
+		if(firstStderr){
+			data = dateFormat(pattern) + data;
+			firstStderr = false;
+		}
+		return data.replace('\n', '\n' + dateFormat(pattern));
+	});
 };
