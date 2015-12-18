@@ -1,6 +1,6 @@
 {
   "name": "logs-time",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Prepend timestamp to all your console outputs",
   "main": "index.js",
   "scripts": {
