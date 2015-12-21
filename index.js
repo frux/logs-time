@@ -17,6 +17,8 @@ module.exports = function(pattern){
 
 	pattern = pattern || 'yyyy-mm-ddTHH:MM:ssZ ';
 
+	//both of this properties are read-only but configurable
+	//that is why we have to delete and assign it again
 	delete process.stdout;
 	delete process.stderr;
 
